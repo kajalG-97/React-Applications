@@ -35,9 +35,9 @@ export const Section = () => {
     } if (el.target.className === "sortByPriceDesc") {
       setDetails([...details.sort((a, b) => b.price - a.price)]);
     } if (el.target.className === "sortByTitleAsc") {
-      setDetails([...details.sort((a, b) => a.title.localCompare(b.title))]);
+      setDetails([...details.sort((a, b) => a.title.localeCompare(b.title))]);
     } if (el.target.className === "sortByTitleDesc") {
-      setDetails([...details.sort((a, b) => b.title.localCompare(a.title))]);
+      setDetails([...details.sort((a, b) => b.title.localeCompare(a.title))]);
     }
   }
 

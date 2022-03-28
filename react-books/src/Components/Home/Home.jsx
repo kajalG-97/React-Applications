@@ -36,9 +36,9 @@ export const Home = () => {
     } if (el.target.className === "sortByPriceDesc") {
       setData([...data.sort((a, b) => b.price - a.price)]);
     }if (el.target.className === "sortByTitleAsc") {
-      setData([...data.sort((a, b) => a.title.localCompare(b.title))]);
+      setData([...data.sort((a, b) => a.title.localeCompare(b.title))]);
     } if (el.target.className === "sortByTitleDesc") {
-      setData([...data.sort((a, b) => b.title.localCompare(a.title))]);
+      setData([...data.sort((a, b) => b.title.localeCompare(a.title))]);
     }
   }
 
