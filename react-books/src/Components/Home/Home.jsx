@@ -11,7 +11,7 @@ export const Home = () => {
   // populate them as mentioned below
   const [data, setData] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:8088/books").then((response) => {
+    axios.get("http://localhost:8080/books").then((response) => {
       setData(response.data);
 
     });
@@ -34,11 +34,11 @@ export const Home = () => {
 
       setData([...data.sort((a, b) => a.price - b.price)]);
     } else if (el.target.className === "sortByPriceDesc") {
-      setData([...data.sort((a, b) => a.price - b.price)]);
+      setData([...data.sort((a, b) => b.price - a.price)]);
     } else if (el.target.className === "SortBytitleAsc") {
-      setData([...data.sort((a, b) => a.title - b.title)]);
+      setData([...data.sort((a, b) => a.title.localCompare(b.title))]);
     } else if (el.target.className === "SortBytitleDesc") {
-      setData([...data.sort((a, b) => b.title - a.title)]);
+      setData([...data.sort((a, b) => b.title.localCompare(a.title))]);
     }
   }
 

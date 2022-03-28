@@ -10,7 +10,7 @@ export const BookDetailsPage = () => {
   const bookId = id.split("")[1]  
  const [details, setDetails] = useState([]);
   useEffect(() => {
-    axios.get(`http://localhost:8088/books?id=${bookId}`).then((response) => {
+    axios.get(`http://localhost:8080/books?id=${bookId}`).then((response) => {
       setDetails(response.data);
       console.log('response in', response.data);
       

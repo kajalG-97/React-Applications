@@ -15,7 +15,7 @@ export const Section = () => {
   const [details, setDetails] = useState([]);
   console.log('details', details);
   useEffect(() => {
-    axios.get(`http://localhost:8088/books?section=${bookId}`).then((response) => {
+    axios.get(`http://localhost:8080/books?section=${bookId}`).then((response) => {
       setDetails(response.data);
       console.log('response in', response.data);
 
@@ -33,11 +33,11 @@ export const Section = () => {
 
       setDetails([...details.sort((a, b) => a.price - b.price)]);
     } else if (el.target.className === "sortByPriceDesc") {
-      setDetails([...details.sort((a, b) => a.price - b.price)]);
+      setDetails([...details.sort((a, b) => b.price - a.price)]);
     } else if (el.target.className === "SortBytitleAsc") {
-      setDetails([...details.sort((a, b) => a.title - b.title)]);
+      setDetails([...details.sort((a, b) => a.title.localCompare(b.title))]);
     } else if (el.target.className === "SortBytitleDesc") {
-      setDetails([...details.sort((a, b) => b.title - a.title)]);
+      setDetails([...details.sort((a, b) => b.title.localCompare(a.title))]);
     }
   }
 
