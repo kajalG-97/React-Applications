@@ -33,11 +33,11 @@ export const Home = () => {
     if (el.target.className === "sortByPriceAsc") {
 
       setData([...data.sort((a, b) => a.price - b.price)]);
-    } else if (el.target.className === "sortByPriceDesc") {
+    } if (el.target.className === "sortByPriceDesc") {
       setData([...data.sort((a, b) => b.price - a.price)]);
-    } else if (el.target.className === "SortBytitleAsc") {
+    }if (el.target.className === "sortByTitleAsc") {
       setData([...data.sort((a, b) => a.title.localCompare(b.title))]);
-    } else if (el.target.className === "SortBytitleDesc") {
+    } if (el.target.className === "sortByTitleDesc") {
       setData([...data.sort((a, b) => b.title.localCompare(a.title))]);
     }
   }

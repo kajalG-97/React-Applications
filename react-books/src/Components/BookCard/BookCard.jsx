@@ -8,8 +8,8 @@ export const BookCard = ({ id, imageUrl, title, price }) => {
       <div  key={id} >
 
         <img src={imageUrl} />
-        <h2>{title}</h2>
-        <h2>Price: {price}</h2>
+        <h2 className="title">{title}</h2>
+        <p className="price">{price}</p>
       </div>
     </Link>
   )

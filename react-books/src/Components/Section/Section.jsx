@@ -32,11 +32,11 @@ export const Section = () => {
     if (el.target.className === "sortByPriceAsc") {
 
       setDetails([...details.sort((a, b) => a.price - b.price)]);
-    } else if (el.target.className === "sortByPriceDesc") {
+    } if (el.target.className === "sortByPriceDesc") {
       setDetails([...details.sort((a, b) => b.price - a.price)]);
-    } else if (el.target.className === "SortBytitleAsc") {
+    } if (el.target.className === "sortByTitleAsc") {
       setDetails([...details.sort((a, b) => a.title.localCompare(b.title))]);
-    } else if (el.target.className === "SortBytitleDesc") {
+    } if (el.target.className === "sortByTitleDesc") {
       setDetails([...details.sort((a, b) => b.title.localCompare(a.title))]);
     }
   }
@@ -45,7 +45,7 @@ export const Section = () => {
     <>
       <h2 style={{ textAlign: "center" }}>
         {
-          //   Show section name here
+          bookId //   Show section name here
         }
       </h2>
       <SortAndFilterButtons handleSort={sorting} />
