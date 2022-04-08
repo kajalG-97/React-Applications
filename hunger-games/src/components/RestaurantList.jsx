@@ -74,12 +74,16 @@ export const RestaurantList = () => {
 
     return (
         <div>
-            <SortAndFilterButtons handleSort={sorting} handleSortByStar={handleSortByStar} handleSortByPayment={handleSortByPayment} handlePage={handlePage}/>
+            <SortAndFilterButtons handleSort={sorting} handleSortByStar={handleSortByStar} handleSortByPayment={handleSortByPayment} />
             <div style={{ display: "flex", flexWrap: "wrap",gap:"20px" }}>
 
                 {data&&data.map((e) =>
                     <RestaurantCard e={e} key={e.id} />
                 )}
+            </div>
+            <div>
+                <button className="prev" onClick={handlePage}>Prev</button>
+                <button className="next" onClick={handlePage}>Next</button>
             </div>
         </div>
     )

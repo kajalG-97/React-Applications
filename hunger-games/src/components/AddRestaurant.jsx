@@ -6,21 +6,17 @@ export const AddRestaurant = () => {
     const [cash, setCash] = useState(false);
     const [card, setCard] = useState(false);
 
-    const [formData, setFormData] = useState({
+    const [formData, setFormData] = useState(({
         "name": "",
         "cuisine": [],
         "costForTwo": "",
-        "payment_methods": {
-            card: card,
-            cash: cash
-        },
         "minOrder": "",
         "deliveryTime": "",
         "rating": "",
         "votes": "",
         "reviews": "",
         "src": ""
-    });
+    }));
 
 
     const postData = () => {
@@ -43,11 +39,20 @@ export const AddRestaurant = () => {
         })
     }
     const handleChange = (e) => {
-        let { className, value } = e.target
-        setFormData({
-            ...formData,
-            [className]: value,
-        });
+        let { className, value, type, checked } = e.target;
+        value = type === "checkbox" ? checked : value;
+        console.log('className:', className);
+        if (type === "checkbox" && checked) {
+            formData.cuisine.push(className);
+            console.log('category', formData.cuisine);
+        }
+        if (e.target.type !== "checkbox") {
+            
+            setFormData({
+                ...formData,
+                [className]: value,
+            });
+        }
     }
    
 
@@ -56,20 +61,7 @@ export const AddRestaurant = () => {
         postData();
     }
 
-    const handleChangeCuisine=(e) => {
-        let { className, value, type, checked } = e.target;
-        value = type === "checkbox" ? checked : value;
-        console.log('className:', className)
-        if (type === "checkbox" && checked) {
-            formData.cuisine.push(className);
-            console.log('category', formData.cuisine);
-        }
-        
-        setFormData({
-            ...formData,
-            [className]: value,
-        });
-   }
+    
 
     const { name, costForTwo, minOrder, deliveryTime, rating, votes, reviews, src } = formData;
     return (
@@ -85,17 +77,17 @@ export const AddRestaurant = () => {
                 <input
                     type="checkbox"
                     className="continental"
-                    onChange={handleChangeCuisine}
+                    onChange={handleChange}
                 />
                 <br />
                 <label>Asian</label>
-                <input type="checkbox" className="Asian" onChange={handleChangeCuisine} />
+                <input type="checkbox" className="Asian" onChange={handleChange} />
                 <br />
                 <label>Pizza</label>
-                <input type="checkbox" className="Pizza" onChange={handleChangeCuisine} />
+                <input type="checkbox" className="Pizza" onChange={handleChange} />
                 <br />
                 <label>Deserts</label>
-                <input type="checkbox" className="Deserts" onChange={handleChangeCuisine} />
+                <input type="checkbox" className="Deserts" onChange={handleChange} />
                 <br />
                 <label>CostForTwo</label>
                 <input type="number" className="costForTwo" value={costForTwo} onChange={handleChange} required />

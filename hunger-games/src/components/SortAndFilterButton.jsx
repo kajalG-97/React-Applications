@@ -1,4 +1,4 @@
-export const SortAndFilterButtons = ({ handleSort, handleSortByStar, handleSortByPayment,handlePage}) => {
+export const SortAndFilterButtons = ({ handleSort, handleSortByStar, handleSortByPayment}) => {
 
     return (
         <div style={{margin:"auto"}}>
@@ -18,10 +18,7 @@ export const SortAndFilterButtons = ({ handleSort, handleSortByStar, handleSortB
                 <button className="sortByPriceAsc"onClick={handleSort}>low to high</button>
 
             </div>
-            <div>
-                <button className="prev" onClick={handlePage}>Prev</button>
-                <button className="next" onClick={handlePage}>Next</button>
-            </div>
+           
 
         </div>
     )
