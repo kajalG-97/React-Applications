@@ -3,15 +3,17 @@ import { useEffect, useState } from "react"
 
 export const AddRestaurant = () => {
 
-    const [paymentMethod, setpaymentMethod] = useState({
-        cash: false,
-        card: false
-    });
-    const [category, setCategory] = useState([]);
+    const [cash, setCash] = useState(false);
+    const [card, setCard] = useState(false);
 
     const [formData, setFormData] = useState({
         "name": "",
+        "cuisine": [],
         "costForTwo": "",
+        "payment_methods": {
+            card: card,
+            cash: cash
+        },
         "minOrder": "",
         "deliveryTime": "",
         "rating": "",
@@ -22,14 +24,14 @@ export const AddRestaurant = () => {
 
 
     const postData = () => {
-        axios.post("http://localhost:8008/get-restaurants", formData).then(() => {
+        axios.post("http://localhost:8008/get-restaurants", {formData,payment_methods:{card,cash}}).then(() => {
             setFormData({
                 "name": "",
                 "cuisine": [],
                 "costForTwo": "",
                 "payment_methods": {
-                    card: false,
-                    cash : false
+                    card: card,
+                    cash : cash
                 },
                 "minOrder": "",
                 "deliveryTime": "",
@@ -47,18 +49,27 @@ export const AddRestaurant = () => {
             [className]: value,
         });
     }
-    const handlePayment = (e) => {
-        const { className, value } = e.target;
-        setpaymentMethod({
-            ...paymentMethod,
-            [className]: value,
-        })
+   
 
-    }
     const handleSubmit = (e) => {
         e.preventDefault();
         postData();
     }
+
+    const handleChangeCuisine=(e) => {
+        let { className, value, type, checked } = e.target;
+        value = type === "checkbox" ? checked : value;
+        console.log('className:', className)
+        if (type === "checkbox" && checked) {
+            formData.cuisine.push(className);
+            console.log('category', formData.cuisine);
+        }
+        
+        setFormData({
+            ...formData,
+            [className]: value,
+        });
+   }
 
     const { name, costForTwo, minOrder, deliveryTime, rating, votes, reviews, src } = formData;
     return (
@@ -68,15 +79,37 @@ export const AddRestaurant = () => {
                 <label>Name</label>
                 <input type="text" className="name" value={name} onChange={handleChange} required />
                 <br />
+                <label>Cuisine</label>
+                <br />
+                <label>Continental</label>
+                <input
+                    type="checkbox"
+                    className="continental"
+                    onChange={handleChangeCuisine}
+                />
+                <br />
+                <label>Asian</label>
+                <input type="checkbox" className="Asian" onChange={handleChangeCuisine} />
+                <br />
+                <label>Pizza</label>
+                <input type="checkbox" className="Pizza" onChange={handleChangeCuisine} />
+                <br />
+                <label>Deserts</label>
+                <input type="checkbox" className="Deserts" onChange={handleChangeCuisine} />
+                <br />
                 <label>CostForTwo</label>
                 <input type="number" className="costForTwo" value={costForTwo} onChange={handleChange} required />
                 <br />
                 <label>payment_methods</label>
                 <br />
                 <label>Cash</label>
-                <input type="checkbox" className="cash" value={true} onChange={handlePayment}  />
+                <input type="checkbox" className="cash" onChange={() => {
+                    setCash(!cash);
+                }}  />
                 <label>Card</label>
-                <input type="checkbox" className="card" value={true} onChange={handlePayment} />
+                <input type="checkbox" className="card" onChange={() => {
+                    setCard(!card);
+                }} />
                 <br />
                 <label>minOrder</label>
                 <input type="number" className="minOrder" value={minOrder} onChange={handleChange} required />

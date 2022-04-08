@@ -5,37 +5,70 @@ import { SortAndFilterButtons } from "./SortAndFilterButton";
 
 export const RestaurantList = () => {
     const [data, setData] = useState([]);
+    const [sort, setSort] = useState("asc");
     const [rating, setRating] = useState(0);
-    const [costForTwo, setCostForTwo] = useState(0);
+    const [costForTwo, setCostForTwo] = useState("");
     const [card, setCard] = useState(true);
-    const [cash,setCash] = useState(false);
+    const [cash,setCash] = useState(true);
     const [page, setPage] = useState(1);
 
     useEffect(() => {
         getdata();
-    }, []);
+    }, [rating,page,cash,card,costForTwo,sort]);
 
     const getdata = () => {
-        axios.get(`http://localhost:8008/get-restaurants?rating_gte=${rating}&_limit=4&_page=${page}&payment_methods.card=${card}&payment_methods.cash=${cash}&_sort=${costForTwo}costForTwo`).then(({ data }) => setData(data));
+        axios.get(`http://localhost:8008/get-restaurants?rating_gte=${rating}&_limit=4&_page=${page}&payment_methods.card=${card}&payment_methods.cash=${cash}&_sort=costForTwo&_order=${sort}`).then(({ data }) => setData(data));
     }
 
     const sorting = (el) => {
         console.log('e', el.target.className);
 
         if (el.target.className === "sortByPriceAsc") {
-            setData([...data.sort((a, b) => a.costForTwo - b.costForTwo)]);
+            setSort("asc");
         } if (el.target.className === "sortByPriceDesc") {
-            setData([...data.sort((a, b) => b.costForTwo - a.costForTwo)]);
+            setSort("desc");
         }
     }
-   
+    const handleSortByStar = (e) => {
+        if (e.target.className === "1star") {
+            console.log('target', e.target);
+            setRating(1);
+        }
+        if (e.target.className === "2star") {
+            console.log('target', e.target);
+            setRating(2);
+        }
+        if (e.target.className === "3star") {
+            console.log('target', e.target);
+            setRating(3);
+        }
+        if (e.target.className === "4star") {
+            console.log('target', e.target);
+            setRating(4);
+        }
+    }
+
+    const handleSortByPayment = (e) => {
+        if (e.target.className === "card") {
+            setCard(true);
+            setCash(false);
+        }
+        if (e.target.className === "cash") {
+            setCash(true);
+            setCard(false);
+        }
+        if (e.target.className === "all") {
+            setCash(true);
+            setCard(true);
+        }
+    }
 
     return (
         <div>
-            <SortAndFilterButtons handleSort={sorting}  />
+            <SortAndFilterButtons handleSort={sorting} handleSortByStar={handleSortByStar} handleSortByPayment={handleSortByPayment} />
             <div style={{ display: "flex", flexWrap: "wrap",gap:"20px" }}>
 
-                {data.map((e) =>
+                {data&&data.map((e) =>
                     <RestaurantCard e={e} key={e.id} />
                 )}
             </div>

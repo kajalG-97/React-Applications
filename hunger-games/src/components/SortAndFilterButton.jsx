@@ -3,15 +3,15 @@ export const SortAndFilterButtons = ({ handleSort, handleSortByStar, handleSortB
     return (
         <div style={{margin:"auto"}}>
             <div>
-                <button onClick={handleSortByStar}>1 star</button>
-                <button onClick={handleSortByStar}>2 star</button>
-                <button onClick={handleSortByStar}>3 star</button>
-                <button onClick={handleSortByStar}>4 star</button>
+                <button className="1star"onClick={handleSortByStar}>1 star</button>
+                <button className="2star"onClick={handleSortByStar}>2 star</button>
+                <button className="3star"onClick={handleSortByStar}>3 star</button>
+                <button className="4star"onClick={handleSortByStar}>4 star</button>
             </div>
             <div>
-                <button onClick={handleSortByPayment}>cash only restaurants</button>
-                <button onClick={handleSortByPayment}>card accepted restaurants</button>
-                <button onClick={handleSortByPayment}>All</button>
+                <button className="cash" onClick={handleSortByPayment}>cash only restaurants</button>
+                <button className="card" onClick={handleSortByPayment}>card accepted restaurants</button>
+                <button className="all" onClick={handleSortByPayment}>All</button>
             </div>
             <div>
                 <button className="sortByPriceDesc" onClick={handleSort}>high to low</button>
