@@ -63,9 +63,18 @@ export const RestaurantList = () => {
         }
     }
 
+    const handlePage = (e) => {
+        if (e.target.className === "prev") {
+            setPage(page - 1);
+        }
+        if (e.target.className === "next") {
+            setPage(page + 1);
+        }
+    }
+
     return (
         <div>
-            <SortAndFilterButtons handleSort={sorting} handleSortByStar={handleSortByStar} handleSortByPayment={handleSortByPayment} />
+            <SortAndFilterButtons handleSort={sorting} handleSortByStar={handleSortByStar} handleSortByPayment={handleSortByPayment} handlePage={handlePage}/>
             <div style={{ display: "flex", flexWrap: "wrap",gap:"20px" }}>
 
                 {data&&data.map((e) =>
