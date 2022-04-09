@@ -35,6 +35,15 @@
       "state": "Maharashtra",
       "pincode": "444809",
       "id": 4
+    },
+    {
+      "name": "madhan",
+      "age": "2",
+      "DOB": "2022-04-20",
+      "address": "INAMDARPURA KARAJGOAN",
+      "state": "Maharashtra",
+      "pincode": "444809",
+      "id": 5
     }
   ]
 }

@@ -17,10 +17,7 @@ export const RegistrationTwo = () => {
             </>
         ) 
     }
-    const combineFun = () => {
-        handleSubmit()
-        navigate("/users")
-    }
+    
    
     return (
         <Box component="form" sx={{ m: 2, width: "300px", display: "inline-block" }} >
@@ -50,7 +47,7 @@ export const RegistrationTwo = () => {
                 sx={{ mt: 3, width: "90%" }}
             />
 
-            <Button onClick={() => combineFun()} type="submit" sx={[{ width: "50%",bgcolor: "#000000",mt:2, m: 1, color: "#f2f2ff" }, () => ({ '&:hover': { color: 'black' } })]}>Next</Button>
+            <Button onClick={handleSubmit} type="submit" sx={[{ width: "50%",bgcolor: "#000000",mt:2, m: 1, color: "#f2f2ff" }, () => ({ '&:hover': { color: 'black' } })]}>Next</Button>
 
         </Box>
     );
