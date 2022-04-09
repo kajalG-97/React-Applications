@@ -9,7 +9,7 @@ export const RegistrationOne = () => {
     const navigate = useNavigate();
     const { name, age, DOB, handleChange } = React.useContext(RegistrationContext);
     return (
-        <Box component="form" sx={{ m: 2, width: "300px", border: 1, display: "inline-block" }} >
+        <Box component="form" sx={{ m: 2, width: "300px", display: "inline-block" }} >
 
             <TextField
                 id="name"
@@ -17,7 +17,7 @@ export const RegistrationOne = () => {
                 value={name}
                 onChange={(e) => { handleChange(e) }}
                 required
-
+                sx={{ mt: 3 ,width:"90%"}}
             />
             <TextField
                 id="age"
@@ -25,6 +25,7 @@ export const RegistrationOne = () => {
                 value={age}
                 onChange={handleChange}
                 required
+                sx={{ mt: 3 ,width:"90%"}}
             />
             <TextField
                 type="date"
@@ -32,9 +33,10 @@ export const RegistrationOne = () => {
                 value={DOB}
                 onChange={handleChange}
                 required
+                sx={{ mt: 3 ,width:"90%"}}
             />
 
-            <Button onClick={() => navigate("registration/two")} type="submit" sx={[{ bgcolor: "#000000", m: 1, color: "#f2f2ff" }, () => ({ '&:hover': { color: 'black' } })]}>Next</Button>
+            <Button disabled={!name || !age || !DOB} onClick={() => navigate("/registration/two")} type="submit" sx={[{mt:2, bgcolor: "#000000", m: 1,width:"50%", color: "#f2f2ff" }, () => ({ '&:hover': { color: 'black' } })]}>Next</Button>
 
         </Box>
     );

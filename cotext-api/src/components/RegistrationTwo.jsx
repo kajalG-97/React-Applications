@@ -3,13 +3,27 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import { RegistrationContext } from './RegistrationContext';
 import { TextField } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate ,Navigate} from 'react-router-dom';
 
 export const RegistrationTwo = () => {
+      
     const navigate = useNavigate();
+
     const { name, age, DOB,state,pincode,address,handleSubmit, handleChange } = React.useContext(RegistrationContext);
+    if (!name || !age || !DOB) {
+        return (
+            <>
+                <Navigate to={"/registration/one"} />
+            </>
+        ) 
+    }
+    const combineFun = () => {
+        handleSubmit()
+        navigate("/users")
+    }
+   
     return (
-        <Box component="form" sx={{ m: 2, width: "300px", border: 1, display: "inline-block" }} >
+        <Box component="form" sx={{ m: 2, width: "300px", display: "inline-block" }} >
 
             <TextField
                 id="state"
@@ -17,6 +31,7 @@ export const RegistrationTwo = () => {
                 value={state}
                 onChange={(e) => { handleChange(e) }}
                 required
+                sx={{ mt: 3, width: "90%" }}
             />
             <TextField
                 id="pincode"
@@ -24,6 +39,7 @@ export const RegistrationTwo = () => {
                 value={pincode}
                 onChange={handleChange}
                 required
+                sx={{ mt: 3, width: "90%" }}
             />
             <TextField
                 label="Address"
@@ -31,9 +47,10 @@ export const RegistrationTwo = () => {
                 value={address}
                 onChange={handleChange}
                 required
+                sx={{ mt: 3, width: "90%" }}
             />
 
-            <Button onClick={handleSubmit} type="submit" sx={[{ bgcolor: "#000000", m: 1, color: "#f2f2ff" }, () => ({ '&:hover': { color: 'black' } })]}>Next</Button>
+            <Button onClick={() => combineFun()} type="submit" sx={[{ width: "50%",bgcolor: "#000000",mt:2, m: 1, color: "#f2f2ff" }, () => ({ '&:hover': { color: 'black' } })]}>Next</Button>
 
         </Box>
     );
