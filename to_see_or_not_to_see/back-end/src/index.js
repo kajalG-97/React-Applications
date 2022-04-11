@@ -4,6 +4,8 @@ const connect = require('./configs/db');
 
 const userController = require("./controllers/user.controller");
 
+const resController = require("./controllers/restaurant.controller");
+
 const { register, login } = require("./controllers/auth.controller");
 
 const cors = require('cors');
@@ -21,6 +23,8 @@ app.use("/users", userController);
 app.post("/register", register);
 
 app.post("/login", login);
+
+app.use("/restaurant", resController);
 
 app.listen(port, async () => {
     try {
