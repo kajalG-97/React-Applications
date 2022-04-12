@@ -1,7 +1,7 @@
 export const RestaurantCard = ({e}) => {
-    return <div style={{ border: '1px solid red',lineHeight:"10px", gap: "10px", width: "45%", padding: '10px', display: 'flex' }} key={e.id}>
+    return <div style={{ boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px", borderRadius: "15px",lineHeight:"10px", gap: "10px", width: "45%", padding: '10px', display: 'flex' }} key={e.id}>
         <div>
-            <img src={e.src} alt={e.name} style={{ width: "250px" }} />
+            <img src={e.src} alt={e.name} style={{ width: "250px" ,height:"250px",borderRadius:"15px"}} />
         </div>
         <div>
             <h2 style={{ color: "blue" }} >{e.name}</h2>
@@ -21,7 +21,7 @@ export const RestaurantCard = ({e}) => {
 
         </div>
         <div style={{ display: "inline-block" }}>
-            <div style={{ color: "white", background: "green", width: "35px" }}>{e.rating}</div>
+            <div style={{ color: "white", background: "green", width: "35px",height: "25px" }}>{e.rating}</div>
             <h5 style={{ color: "grey" }}>{e.votes} votes</h5>
             <h5 style={{ color: "grey" }}>{e.reviews} reviews</h5>
         </div>

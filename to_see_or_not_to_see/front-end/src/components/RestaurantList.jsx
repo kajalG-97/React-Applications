@@ -7,6 +7,8 @@ import { SortAndFilterButtons } from "./SortAndFilter";
 export const RestaurantList = () => {
     const { restaurant } = useSelector((store) => store.restaurant);
     console.log('restaurant', restaurant);
+    const { isAuthenticated } = useSelector((store) => store.auth);
+
     const [sort, setSort] = useState("asc");
     const [costForTwo, setCostForTwo] = useState("");
     const dispatch = useDispatch();
@@ -19,6 +21,10 @@ export const RestaurantList = () => {
         fetchData();
     }, [sort]);
 
+    if (!isAuthenticated) {
+        return <Navigate to={"/login"} />
+    }
+
     const sorting = (e) => {
         if (e.target.id === "sortByAsc") {
             setSort("asc");
@@ -28,12 +34,14 @@ export const RestaurantList = () => {
     }
 
     return (
-        <div>
+        <div >
             <SortAndFilterButtons handleSort={sorting} />
-            {restaurant && restaurant.map((e) => {
+            <div style={{display: 'flex', flexWrap: 'wrap',gap:"30px",margin:"auto",width:"90%",marginTop:"30px"}}>
+                {restaurant && restaurant.map((e) => {
 
-                return <RestaurantCard e={e} key={e.id} />
-            })}
+                    return <RestaurantCard e={e} key={e.id} />
+                })}
+            </div>
         </div>
     )
 }

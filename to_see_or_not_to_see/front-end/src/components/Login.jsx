@@ -54,7 +54,7 @@ export const Login = () => {
                 sx={{ mt: 3, width: "90%" }}
             />
 
-            <Button onClick={handleSubmit} type="submit" sx={[{ width: "50%", bgcolor: "#000000", mt: 2, m: 1, color: "#f2f2ff" }, () => ({ '&:hover': { color: 'black' } })]}>SignUp</Button>
+            <Button onClick={handleSubmit} type="submit" sx={[{ width: "50%", bgcolor: "#000000", mt: 2, m: 1, color: "#f2f2ff" }, () => ({ '&:hover': { color: 'black' } })]}>Login</Button>
 
         </Box>
     )
