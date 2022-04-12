@@ -1,24 +1,23 @@
 export const SortAndFilterButtons = ({ handleSort, handleSortByStar, handleSortByPayment}) => {
 
     return (
-        <div style={{margin:"auto"}}>
+        <div style={{ margin: "auto" }}>
             <div>
-                <button className="1star"onClick={handleSortByStar}>1 star</button>
-                <button className="2star"onClick={handleSortByStar}>2 star</button>
-                <button className="3star"onClick={handleSortByStar}>3 star</button>
-                <button className="4star"onClick={handleSortByStar}>4 star</button>
+                <h1>Sort By Star</h1>
+                <Button className="1star" onClick={handleSortByStar} variant="outlined">
+                    <Rating name="size-medium" defaultValue={1} readOnly />
+                </Button>
+                <Button className="2star" onClick={handleSortByStar} variant="outlined"><Rating name="size-medium" defaultValue={2} readOnly /></Button>
+                <Button className="3star" onClick={handleSortByStar} variant="outlined"><Rating name="size-medium" defaultValue={3} readOnly /></Button>
+                <Button  className="4star" onClick={handleSortByStar} variant="outlined"><Rating name="size-medium" defaultValue={4} readOnly /></Button>
             </div>
             <div>
-                <button className="cash" onClick={handleSortByPayment}>cash only restaurants</button>
-                <button className="card" onClick={handleSortByPayment}>card accepted restaurants</button>
-                <button className="all" onClick={handleSortByPayment}>All</button>
+                <Button className="card" onClick={handleSortByPayment} variant="outlined">Card</Button>
+                <Button className="cash" onClick={handleSortByPayment} variant="outlined">Cash</Button>
+                <Button className="all" onClick={handleSortByPayment} variant="outlined">All</Button>
             </div>
-            <div>
-                <button className="sortByPriceDesc" onClick={handleSort}>high to low</button>
-                <button className="sortByPriceAsc"onClick={handleSort}>low to high</button>
-
-            </div>
-           
+            <Button className="sortByPriceDesc" onClick={handleSort} variant="outlined">high to low</Button>
+            <Button className="sortByPriceAsc" onClick={handleSort} variant="outlined">low to high</Button>           
 
         </div>
     )

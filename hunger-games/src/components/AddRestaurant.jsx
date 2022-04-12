@@ -20,14 +20,14 @@ export const AddRestaurant = () => {
 
 
     const postData = () => {
-        axios.post("http://localhost:8008/get-restaurants", {formData,payment_methods:{card,cash}}).then(() => {
+        axios.post("http://localhost:8008/get-restaurants", { formData, payment_methods: { card, cash } }).then(() => {
             setFormData({
                 "name": "",
                 "cuisine": [],
                 "costForTwo": "",
                 "payment_methods": {
                     card: card,
-                    cash : cash
+                    cash: cash
                 },
                 "minOrder": "",
                 "deliveryTime": "",
@@ -47,21 +47,21 @@ export const AddRestaurant = () => {
             console.log('category', formData.cuisine);
         }
         if (e.target.type !== "checkbox") {
-            
+
             setFormData({
                 ...formData,
                 [className]: value,
             });
         }
     }
-   
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
         postData();
     }
 
-    
+
 
     const { name, costForTwo, minOrder, deliveryTime, rating, votes, reviews, src } = formData;
     return (
@@ -97,7 +97,7 @@ export const AddRestaurant = () => {
                 <label>Cash</label>
                 <input type="checkbox" className="cash" onChange={() => {
                     setCash(!cash);
-                }}  />
+                }} />
                 <label>Card</label>
                 <input type="checkbox" className="card" onChange={() => {
                     setCard(!card);

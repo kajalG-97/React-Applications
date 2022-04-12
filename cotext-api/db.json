@@ -1,15 +1,6 @@
 {
   "users": [
     {
-      "name": "madhan",
-      "age": "24",
-      "DOB": "2022-04-08",
-      "address": "INAMDARPURA KARAJGOAN",
-      "state": "Maharashtra",
-      "pincode": "444809",
-      "id": 1
-    },
-    {
       "name": "rani",
       "age": "21",
       "DOB": "2022-06-09",
@@ -44,6 +35,15 @@
       "state": "Maharashtra",
       "pincode": "444809",
       "id": 5
+    },
+    {
+      "name": "Kajal Ganorkar ",
+      "age": "24",
+      "DOB": "2022-04-05",
+      "address": "INAMDARPURA KARAJGOAN",
+      "state": "Maharashtra",
+      "pincode": "444809",
+      "id": 6
     }
   ]
 }

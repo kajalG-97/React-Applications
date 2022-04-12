@@ -10,6 +10,7 @@ grid-gap: 40px;
 div{
     border: 1px solid;
 text-align: center;
+
 }
 
 

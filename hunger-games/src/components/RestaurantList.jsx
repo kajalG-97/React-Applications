@@ -2,6 +2,11 @@ import axios from "axios"
 import { useEffect, useState } from "react";
 import { RestaurantCard } from "./RestaurantCard";
 import { SortAndFilterButtons } from "./SortAndFilterButton";
+import * as React from 'react';
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
+
+
 
 export const RestaurantList = () => {
     const [data, setData] = useState([]);
@@ -85,6 +90,11 @@ export const RestaurantList = () => {
                 <button className="prev" onClick={handlePage}>Prev</button>
                 <button className="next" onClick={handlePage}>Next</button>
             </div>
+            <Stack spacing={2}>
+
+                <Pagination count={5} color="primary" />
+
+            </Stack>
         </div>
     )
 }

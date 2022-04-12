@@ -12,8 +12,11 @@ export const getRestaurantLoding = () => ({ type: GET_RESTAURANT_LODING });
 
 export const getRestaurantError = () => ({ type: GET_RESTAURANT_ERROR });
 
-export const getRestaurantData = () => (dispatch) => {
+export const getRestaurantData = (sort) => (dispatch) => {
 
     dispatch(getRestaurantLoding());
-    axios.get("http://localhost:8800/restaurant").then(({data})=>dispatch(getRestaurant(data))).catch((err)=>dispatch(getRestaurantError()));
+
+    axios.get(`http://localhost:8800/restaurant?_sort=costForTwo&_order=${sort}`)
+        .then(({ data }) => dispatch(getRestaurant(data)))
+        .catch((err) => dispatch(getRestaurantError()));
 }
