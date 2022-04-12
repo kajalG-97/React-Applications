@@ -5,6 +5,7 @@ import { RestaurantList } from './components/RestaurantList'
 import { AddRestaurant } from './components/AddRestaurant'
 import { Route, Routes } from 'react-router-dom'
 import { Navbar } from './components/Navbar'
+import { NotFound } from './components/NotFound'
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={<RestaurantList />} />
         <Route path="/addRestaurant" element={<AddRestaurant />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
 
 

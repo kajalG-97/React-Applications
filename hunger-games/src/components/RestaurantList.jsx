@@ -26,53 +26,53 @@ export const RestaurantList = () => {
     }
 
     const sorting = (el) => {
-        console.log('e', el.target.className);
+        console.log('e', el.target.id);
 
-        if (el.target.className === "sortByPriceAsc") {
+        if (el.target.id === "sortByPriceAsc") {
             setSort("asc");
-        } if (el.target.className === "sortByPriceDesc") {
+        } if (el.target.id === "sortByPriceDesc") {
             setSort("desc");
         }
     }
     const handleSortByStar = (e) => {
-        if (e.target.className === "1star") {
+        if (e.target.id === "1star") {
             console.log('target', e.target);
             setRating(1);
         }
-        if (e.target.className === "2star") {
+        if (e.target.id === "2star") {
             console.log('target', e.target);
             setRating(2);
         }
-        if (e.target.className === "3star") {
+        if (e.target.id === "3star") {
             console.log('target', e.target);
             setRating(3);
         }
-        if (e.target.className === "4star") {
+        if (e.target.id === "4star") {
             console.log('target', e.target);
             setRating(4);
         }
     }
 
     const handleSortByPayment = (e) => {
-        if (e.target.className === "card") {
+        if (e.target.id === "card") {
             setCard(true);
             setCash(false);
         }
-        if (e.target.className === "cash") {
+        if (e.target.id === "cash") {
             setCash(true);
             setCard(false);
         }
-        if (e.target.className === "all") {
+        if (e.target.id === "all") {
             setCash(true);
             setCard(true);
         }
     }
 
     const handlePage = (e) => {
-        if (e.target.className === "prev") {
+        if (e.target.id === "prev") {
             setPage(page - 1);
         }
-        if (e.target.className === "next") {
+        if (e.target.id === "next") {
             setPage(page + 1);
         }
     }
@@ -80,19 +80,19 @@ export const RestaurantList = () => {
     return (
         <div>
             <SortAndFilterButtons handleSort={sorting} handleSortByStar={handleSortByStar} handleSortByPayment={handleSortByPayment} />
-            <div style={{ display: "flex", flexWrap: "wrap",gap:"20px" }}>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "20px", margin: "auto", width: "90%", marginTop: "30px" }}>
 
                 {data&&data.map((e) =>
                     <RestaurantCard e={e} key={e.id} />
                 )}
             </div>
             <div>
-                <button className="prev" onClick={handlePage}>Prev</button>
-                <button className="next" onClick={handlePage}>Next</button>
+                <button id="prev" onClick={handlePage}>Prev</button>
+                <button id="next" onClick={handlePage}>Next</button>
             </div>
             <Stack spacing={2}>
 
-                <Pagination count={5} color="primary" />
+                <Pagination count={5} color="primary"/>
 
             </Stack>
         </div>
