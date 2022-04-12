@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export const GET_RESTAURANT_LODING = 'GET_RESTAURANT_LODING';
 
 export const GET_RESTAURANT = 'GET_RESTAURANT';
@@ -10,4 +12,8 @@ export const getRestaurantLoding = () => ({ type: GET_RESTAURANT_LODING });
 
 export const getRestaurantError = () => ({ type: GET_RESTAURANT_ERROR });
 
+export const getRestaurantData = () => (dispatch) => {
 
+    dispatch(getRestaurantLoding());
+    axios.get("http://localhost:8800/restaurant").then(({data})=>dispatch(getRestaurant(data))).catch((err)=>dispatch(getRestaurantError()));
+}

@@ -10,7 +10,7 @@ export const restaurantReducer = (store = initialState, { type, payload }) => {
             ...store,
             loding: true
         };
-        case GET_RESTAURANT: return { ...store, restaurant: [...payload], loading: false, error: false };
+        case GET_RESTAURANT: return { restaurant: payload, loading: false, error: false };
 
         case GET_RESTAURANT_ERROR: return { ...store, loding: false, error: true }
 

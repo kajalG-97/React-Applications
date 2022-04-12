@@ -5,6 +5,8 @@ import { TextField } from '@mui/material';
 import { useNavigate, Navigate } from 'react-router-dom';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
 
 import { loginError, loginLoding, loginSuccess } from '../redux/auth/authAction';
 
@@ -30,7 +32,7 @@ export const Login = () => {
         dispatch(loginLoding());
         axios.post("http://localhost:8800/login", data).then(({ data }) => dispatch(loginSuccess(data.token))).catch(() => dispatch(loginError()));
     }
-    const {  email, password } = data;
+    const { email, password } = data;
     return (
         <Box component="form" sx={{ m: 2, width: "300px", display: "inline-block" }} >
 
