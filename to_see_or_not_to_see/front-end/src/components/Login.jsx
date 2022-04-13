@@ -12,6 +12,7 @@ import { loginError, loginLoding, loginSuccess } from '../redux/auth/authAction'
 
 export const Login = () => {
     const dispatch = useDispatch();
+    const { loding,error } = useSelector((store) => store.auth);
 
     const navigate = useNavigate();
     const [data, setData] = React.useState({
@@ -33,7 +34,7 @@ export const Login = () => {
         axios.post("http://localhost:8800/login", data).then(({ data }) => dispatch(loginSuccess(data.token))).catch(() => dispatch(loginError()));
     }
     const { email, password } = data;
-    return (
+    return loding ? <img src="https://miro.medium.com/max/1400/1*CsJ05WEGfunYMLGfsT2sXA.gif" /> : error ? <img src="https://cdn.dribbble.com/users/2469324/screenshots/6538803/comp_3.gif" alt="Oops something went wrong" /> : (
         <Box component="form" sx={{ m: 2, width: "300px", display: "inline-block" }} >
 
             <TextField

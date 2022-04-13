@@ -5,7 +5,7 @@ import { RestaurantCard } from "./RestaurantCard";
 import { SortAndFilterButtons } from "./SortAndFilter";
 
 export const RestaurantList = () => {
-    const { restaurant } = useSelector((store) => store.restaurant);
+    const { restaurant,loding,error } = useSelector((store) => store.restaurant);
     console.log('restaurant', restaurant);
     const { isAuthenticated } = useSelector((store) => store.auth);
 
@@ -33,7 +33,7 @@ export const RestaurantList = () => {
         }
     }
 
-    return (
+    return loding ? <img src="https://www.fugusau.edu.ng/wp-content/uploads/2021/01/Bubble-Preloader-1-1.gif" /> : error ? <img src="https://cdn.dribbble.com/users/2469324/screenshots/6538803/comp_3.gif" alt="Oops something went wrong"/>:(
         <div >
             <SortAndFilterButtons handleSort={sorting} />
             <div style={{display: 'flex', flexWrap: 'wrap',gap:"30px",margin:"auto",width:"90%",marginTop:"30px"}}>
