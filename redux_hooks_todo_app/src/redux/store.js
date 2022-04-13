@@ -4,11 +4,13 @@ import { createStore } from "redux";
 import { AuthReducer } from "./auth/authReducer";
 import thunk from "redux-thunk";
 import { registerReducer } from "./register/registerReducer";
+import { todoHomeReducer } from "./todo/todoHomeReducer";
 
 
 const rootReducer = combineReducers({
     auth: AuthReducer,
-    register: registerReducer
+    register: registerReducer,
+    todo: todoHomeReducer
 });
 
 
