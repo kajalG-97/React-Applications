@@ -8,11 +8,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
 
-import { loginError, loginLoding, loginSuccess } from '../redux/auth/authAction';
+import { loginError, loginLoding, loginSuccess, loginSuccessData } from '../redux/auth/authAction';
 
 export const Login = () => {
     const dispatch = useDispatch();
-    const { loding,error } = useSelector((store) => store.auth);
+    const { loding, error } = useSelector((store) => store.auth);
 
     const navigate = useNavigate();
     const [data, setData] = React.useState({
@@ -30,8 +30,7 @@ export const Login = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(loginLoding());
-        axios.post("http://localhost:8800/login", data).then(({ data }) => dispatch(loginSuccess(data.token))).catch(() => dispatch(loginError()));
+        dispatch(loginSuccessData(data,navigate));
     }
     const { email, password } = data;
     return loding ? <img src="https://miro.medium.com/max/1400/1*CsJ05WEGfunYMLGfsT2sXA.gif" /> : error ? <img src="https://cdn.dribbble.com/users/2469324/screenshots/6538803/comp_3.gif" alt="Oops something went wrong" /> : (
