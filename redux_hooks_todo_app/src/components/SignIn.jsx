@@ -25,8 +25,8 @@ export const SignIn = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { loding, error} = useSelector((store) => store.auth);
-  
+  const { loding, error } = useSelector((store) => store.auth);
+
   const [data, setData] = useState({
     email: "",
     password: "",

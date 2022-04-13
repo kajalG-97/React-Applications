@@ -9,19 +9,16 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Link  ,useNavigate} from "react-router-dom";
-import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 import { HomeNav } from "./HomeNav";
+import { useDispatch, useSelector } from "react-redux";
+import { registerSuccessData } from "../redux/register/registerAction";
 export const SignUp = () => {
-  const navigate=useNavigate();
-  const notify = () =>
-    toast.success("Registered Successfully", {
-      position: "top-center",
-    });
-  const notify2 = () =>
-    toast.error("Please check your email or password", {
-      position: "top-center",
-    });
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const { loding, error } = useSelector((store) => store.register);
+
   const [data, setData] = useState({
     firstName: "",
     lastName: "",
@@ -59,20 +56,11 @@ export const SignUp = () => {
         }
       );
     } else {
-      axios
-        .post("https://grubhub-backend-clone.herokuapp.com/register", data)
-        .then((res) => {
-          if (res) {
-            notify();
-            setTimeout(()=>{navigate("/SignIn")},3000)
-          }
-        })
-        .catch((error) => {
-          notify2();
-        });
+      dispatch(registerSuccessData(data, navigate, toast));
+      console.log('data', data);
     }
   };
-  return (
+  return loding ? <img src="https://miro.medium.com/max/1400/1*CsJ05WEGfunYMLGfsT2sXA.gif" /> : error ? <img src="https://cdn.dribbble.com/users/2469324/screenshots/6538803/comp_3.gif" alt="Oops something went wrong" /> : (
     <>
       <HomeNav />
       <Box
@@ -86,7 +74,7 @@ export const SignUp = () => {
           },
           justifyContent: "center",
           marginTop: "20px",
-          paddingTop:"65px"
+          paddingTop: "65px"
         }}
         component="form"
         noValidate
@@ -177,7 +165,7 @@ export const SignUp = () => {
             variant="contained"
             sx={{ backgroundColor: "#4285f4", color: "white " }}
             startIcon={<GoogleIcon />}
-           
+
           >
             Continue With Google
           </Button>
