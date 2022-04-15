@@ -37,11 +37,9 @@ export const HomeNav = () => {
                         ToDo
                     </Typography>
                     <Link to={"/SignIn"}><Button sx={{ m: 1, color: "#f2f2ff", textDecoration: "none" }} color="inherit">Login</Button></Link>
-                    <Link to={"/SignUp"}><Button sx={{ m: 1, color: "#f2f2ff" ,textDecoration: "none" }} color="inherit">Register</Button></Link>
+                    <Link to={"/SignUp"}><Button sx={{ m: 1, color: "#f2f2ff", textDecoration: "none" }} color="inherit">Register</Button></Link>
 
                 </Toolbar>
-
-
             </AppBar>
         </Box>
     ) : (
@@ -53,12 +51,10 @@ export const HomeNav = () => {
                         <Typography variant="h6" component="div" sx={{ mr: 2, flexGrow: 1, display: "flex", justifyContent: "space-between" }}>
                             ToDo
                         </Typography>
-                            <Link to={"/createTodo"}><Button sx={{ m: 1, color: "#f2f2ff", textDecoration: "none"}} color="inherit">Create Todo</Button></Link>
-                            <Link underline="none" to={"/summery"}><Button sx={{ m: 1, color: "#f2f2ff"}} color="inherit">Summary</Button></Link>
+                        <Link to={"/createTodo"}><Button sx={{ m: 1, color: "#f2f2ff", textDecoration: "none" }} color="inherit">Create Todo</Button></Link>
+                        <Link underline="none" to={"/summery"}><Button sx={{ m: 1, color: "#f2f2ff" }} color="inherit">Summary</Button></Link>
 
                     </Toolbar>
-
-
                 </AppBar>
             </ThemeProvider>
         </Box>

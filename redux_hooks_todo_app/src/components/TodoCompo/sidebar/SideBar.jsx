@@ -9,8 +9,8 @@ import { TagStacks } from "./TagStacks";
 import { Navigate } from "react-router-dom";
 
 export const SideBar = () => {
-    
-    const { loding, error ,isAuthenticated} = useSelector((store) => store.auth);
+
+    const { loding, error, isAuthenticated } = useSelector((store) => store.auth);
     const dispatch = useDispatch();
 
     if (!isAuthenticated) {
@@ -18,10 +18,14 @@ export const SideBar = () => {
     }
 
     return loding ? <img src="https://miro.medium.com/max/1400/1*CsJ05WEGfunYMLGfsT2sXA.gif" /> : error ? <img src="https://cdn.dribbble.com/users/2469324/screenshots/6538803/comp_3.gif" alt="Oops something went wrong" /> : (
-        <div>
+        <Box sx={{ width: "20%", mt: 4, ml: 2, boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px" }}>
             <Profile />
-            <TagStacks/>
-            <Button onClick={()=>dispatch(logoutUser())}>Logout</Button>
-        </div>
+            <hr />
+            <TagStacks />
+            <hr />
+            <Button onClick={() => dispatch(logoutUser())}>Logout</Button>
+            <br />
+
+        </Box>
     )
 }

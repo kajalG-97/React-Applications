@@ -1,16 +1,16 @@
 import { useSelector } from "react-redux"
 
 export const Profile = () => {
-     const { user } = useSelector((store) => store.auth);
+    const { user } = useSelector((store) => store.auth);
     console.log('users', user);
 
     return (
         <>
-            <h1>Profile</h1>
-            <div>
-                <h3>User Name : {user.user.firstName} {user.user.lastName}</h3> 
-                <h3>Email : {user.user.email}</h3>
-
+            <h2>Profile</h2>
+            <div style={{ padding: '10px 10px' }}>
+                <h4>User Name : {user.user.firstName} {user.user.lastName}</h4>
+                <h4>Email : {user.user.email}</h4>
+                <br />
             </div>
         </>
     )
