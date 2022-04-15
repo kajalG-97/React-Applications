@@ -12,11 +12,11 @@ export const registerError = () => ({ type: REGISTER_ERROR });
 
 export const registerSuccess = (payload) => ({ type: REGISTER_SUCCESS, payload });
 
-export const registerSuccessData = (data, navigate, toast) => (dispatch) => {
+export const registerSuccessData = (data, toast,navigate) => (dispatch) => {
 
     dispatch(registerLoding());
     axios.post("http://localhost:8800/register", data).then(({ data }) => {
-        dispatch(registerSuccess(data.token))
+        dispatch(registerSuccess(data))
         toast.success("Registration Successfull!", {
             position: "top-center",
         });

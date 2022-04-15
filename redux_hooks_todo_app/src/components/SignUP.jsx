@@ -56,7 +56,7 @@ export const SignUp = () => {
         }
       );
     } else {
-      dispatch(registerSuccessData(data, navigate, toast));
+      dispatch(registerSuccessData(data,toast, navigate ));
       console.log('data', data);
     }
   };
@@ -105,6 +105,7 @@ export const SignUp = () => {
               sx={{ marginBottom: "25px" }}
               onChange={getformData}
             />
+           
           </Box>
           <TextField
             id="email"
@@ -113,6 +114,7 @@ export const SignUp = () => {
             sx={{ marginBottom: "25px" }}
             onChange={getformData}
           />
+
           <TextField
             id="password"
             label="Password (8 character minimum)"
@@ -121,6 +123,7 @@ export const SignUp = () => {
             sx={{ marginBottom: "10px" }}
             onChange={getformData}
           />
+          
           <Box
             sx={{
               display: "flex",

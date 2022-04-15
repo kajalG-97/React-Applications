@@ -54,7 +54,7 @@ export const SignIn = () => {
       );
     } else {
       e.preventDefault();
-      dispatch(loginSuccessData(data, navigate, toast))
+      dispatch(loginSuccessData(data, toast,navigate))
     }
   };
 

@@ -12,11 +12,11 @@ export const loginError = () => ({ type: LOGIN_ERROR });
 
 export const loginSuccess = (payload) => ({ type: LOGIN_SUCCESS, payload });
 
-export const loginSuccessData = (data, navigate, toast) => (dispatch) => {
+export const loginSuccessData = (data,toast ,navigate ) => (dispatch) => {
 
     dispatch(loginLoding());
     axios.post("http://localhost:8800/login", data).then(({ data }) => {
-        dispatch(loginSuccess(data.token))
+        dispatch(loginSuccess(data))
         toast.success("Logged in Successfully", {
             position: "top-center",
         });
