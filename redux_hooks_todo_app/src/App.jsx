@@ -6,7 +6,7 @@ import { Home } from './components/Home'
 import { NotFound } from './components/NotFound'
 import { SignIn } from './components/SignIn'
 import { SignUp } from './components/SignUP'
-import { TodoHomePage } from './components/TodoHomePage'
+import { TodoHomePage } from './components/TodoCompo/TodoHomePage'
 
 function App() {
   
