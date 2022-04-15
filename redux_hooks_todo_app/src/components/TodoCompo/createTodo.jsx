@@ -8,8 +8,21 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import FormGroup from '@mui/material/FormGroup';
 import Button from '@mui/material/Button';
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { todoListData } from "../../redux/todo/todoHomeAction";
+import { ToastContainer, toast } from "react-toastify";
+import Stack from '@mui/material/Stack';
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 export const CreateTodos = () => {
+
+    const dispatch = useDispatch();
+    
+    const navigate = useNavigate();
+
+    const { loding, error } = useSelector((store) => store.todo);
 
     const [data, setData] = React.useState({
         title: "",
@@ -19,6 +32,10 @@ export const CreateTodos = () => {
         tags: { Official: false, Personal: false, Others: false },
         date: ""
     });
+    const [txt, setTxt] = React.useState({
+        text: "",
+        subtasksStatus:false
+    })
 
     const handleChange = (e) => {
         const { id, value } = e.target;
@@ -29,28 +46,56 @@ export const CreateTodos = () => {
             }
         )
     };
-    const [text, setText] = React.useState("");
 
-    const postData = () => {
-        axios.post("http://localhost:3333/todos", {
-            title: text,
-            status: false,
-        }).then((res) => console.log(res.data));
+    const handleRadio = (event) => {
+        setData({ ...data, status: event.target.value })
     }
+
+    const handleTasks = (e) => {
+        let { checked } = e.target;
+        if (e.target.value === "official") {
+            console.log('checked', checked);
+
+            setData({ ...data, tags: { ...data.tags, Official: checked } })
+        }
+        if (e.target.value === "personal") {
+            console.log('e', e);
+            setData({ ...data, tags: { ...data.tags, Personal: checked } })
+        }
+        if (e.target.value === "others") {
+            console.log('e', e);
+            setData({ ...data, tags: { ...data.tags, Others: checked } })
+        }
+       
+    }
+
+    // const handleChangeSubtasks = (e) => {
+    //     let { checked } = e.target;
+    //      if (e.target.value === "subtaskStatus") {
+    //          setTxt({ ...data, subtasks: [...data.subtasks, txt: { ...txt,subtaskStatus:checked}]})
+    //     }
+    // }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        dispatch(todoListData(data, toast, navigate));
+        console.log('datain', data);
+    }
+
     const { title, description, status, date } = data;
-    return (
-        <Box sx={{ display: 'flex', gap: "20px" }}>
+    return loding ? <img src="https://miro.medium.com/max/1400/1*CsJ05WEGfunYMLGfsT2sXA.gif" /> : error ? <img src="https://cdn.dribbble.com/users/2469324/screenshots/6538803/comp_3.gif" alt="Oops something went wrong" /> : (
+        <Box component="form" sx={{ display: 'flex', gap: "20px" }}>
             <SideBar />
             <Box sx={{ display: "flex", width: "73%", ml: 4, mt: 4, boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px" }}>
 
-                <Box sx={{ border: 1 }}>
+                <Box sx={{ width: "35%", border: "solid red" }}>
                     <TextField
                         label="Title"
                         id="title"
                         value={title}
                         onChange={handleChange}
                         required
-                        sx={{ mt: 3, width: "60%" }}
+                        sx={{ mt: 3, width: "90%" }}
                     />
                     <TextField
                         id="description"
@@ -59,14 +104,15 @@ export const CreateTodos = () => {
                         maxRows={4}
                         value={description}
                         onChange={handleChange}
-                        sx={{ mt: 3, width: "60%" }}
+                        sx={{ mt: 3, width: "90%" }}
                     />
-                    <Box sx={{ display: "flex", justifyContent: "space-around", mt: 2 }}>
+                    <br />
+                    <Box sx={{ display: "flex", justifyContent: "space-around", m: "auto", mt: 5, width: "90%" }}>
                         <Box >
                             <RadioGroup>
-                                <FormControlLabel value="Todo" control={<Radio />} label="Todo" />
-                                <FormControlLabel value="InProgress" control={<Radio />} label="InProgress" />
-                                <FormControlLabel value="Done" control={<Radio />} label="Done" />
+                                <FormControlLabel onChange={handleRadio} id="Todo" value="Todo" control={<Radio />} label="Todo" />
+                                <FormControlLabel onChange={handleRadio} id="InProgress" value="InProgress" control={<Radio />} label="InProgress" />
+                                <FormControlLabel onChange={handleRadio} id="Done" value="Done" control={<Radio />} label="Done" />
                             </RadioGroup>
 
                         </Box>
@@ -76,20 +122,26 @@ export const CreateTodos = () => {
                             <FormGroup>
                                 <FormControlLabel
                                     control={
-                                        <Checkbox onChange={handleChange} id="official" value="official" />
+                                        <Checkbox
+                                        />
                                     }
+                                    id="official" value="official"
                                     label="Official"
+                                    onChange={(e) => handleTasks(e)}
                                 />
                                 <FormControlLabel
                                     control={
-                                        <Checkbox onChange={handleChange} id="personal" value="personal" />
+                                        <Checkbox id="personal" value="personal" />
                                     }
+                                    type="checkbox"
                                     label="Personal"
+                                    onChange={(e) => handleTasks(e)}
                                 />
                                 <FormControlLabel
                                     control={
-                                        <Checkbox onChange={handleChange} id="others" value="others" />
+                                        <Checkbox id="others" value="others" />
                                     }
+                                    onChange={(e) => handleTasks(e)}
                                     label="Others"
                                 />
                             </FormGroup>
@@ -100,30 +152,52 @@ export const CreateTodos = () => {
 
 
                 </Box>
-                <Box sx={{ border: 1 }}>
+                <Box sx={{ border: 1, width: "45%" }}>
                     <TextField
-                        label="Add Todo Here"
+                        label="Add Subtask Here"
                         id="add"
-                        onChange={(e) => setText(e.target.value)}
+                        onChange={(e) => setTxt({...txt,text:e.target.value,subtaskStatus:false})}
                         required
                         sx={{ mt: 3, width: "70%" }}
                     />
-                    <Button onClick={() => { postData() }}>ADD</Button>
+                    <Button sx={[{ mt: 2, bgcolor: "#000000", m: 1, width: "50%", color: "#f2f2ff" }, () => ({ '&:hover': { color: 'black' } })]} onClick={() => {
+                        data.subtasks.push(txt);
+                    }}>ADD</Button>
 
+                    {data.subtasks.map((e) => {
+                        return <Box sx={{display: 'flex',width:"90%",m:2,pl:2,boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px" }} key={e.id}>
+                            <FormGroup>
+                                <FormControlLabel
+                                    control={
+                                        <Checkbox
+                                        />
+                                    }
+                                    id="subtaskStatus" value="subtaskStatus"
+                                    // onChange={(e) => handleChangeSubtasks(e)}
+                                /></FormGroup>
+                            <h2>{e.text}</h2>
+                            {console.log('text', e.text)}
+                            <IconButton aria-label="delete" size="large">
+                                <DeleteIcon fontSize="inherit" />
+                            </IconButton>
+                        </Box>
+                    })}
                 </Box>
-                <Box sx={{ border: 1 }}>
+                <Box sx={{ border: 1, width: "30%" }}>
                     <TextField
-                        label="date"
+                        label="Date"
                         id="date"
+                        type="date"
                         value={date}
                         onChange={handleChange}
                         required
                         sx={{ mt: 3, width: "70%" }}
                     />
+
+                    <Button onClick={handleSubmit} sx={[{ border: "2px solid #81d4fa", bgcolor: "#b3e5fc", m: 4, ml: 3 }]}>Create a new Task</Button>
                 </Box>
 
             </Box>
-
         </Box>
     )
 }
