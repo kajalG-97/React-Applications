@@ -62,7 +62,7 @@ export const SignUp = () => {
   };
   return loding ? <img src="https://miro.medium.com/max/1400/1*CsJ05WEGfunYMLGfsT2sXA.gif" /> : error ? <img src="https://cdn.dribbble.com/users/2469324/screenshots/6538803/comp_3.gif" alt="Oops something went wrong" /> : (
     <>
-      <HomeNav />
+      
       <Box style={{ backgroundColor: "#ebe7ff", height: "660px",marginTop:0 }}
         sx={{
           display: "flex",

@@ -6,11 +6,15 @@ export const LOGIN_ERROR = 'LOGIN_ERROR';
 
 export const LOGIN_LODING = 'LOGIN_LODING';
 
+export const LOGOUT = 'LOGOUT';
+
 export const loginLoding = () => ({ type: LOGIN_LODING });
 
 export const loginError = () => ({ type: LOGIN_ERROR });
 
 export const loginSuccess = (payload) => ({ type: LOGIN_SUCCESS, payload });
+
+export const logoutUser = () => ({ type: LOGOUT})
 
 export const loginSuccessData = (data,toast ,navigate ) => (dispatch) => {
 
