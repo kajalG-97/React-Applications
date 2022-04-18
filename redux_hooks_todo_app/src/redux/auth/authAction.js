@@ -26,6 +26,7 @@ export const loginSuccessData = (data,toast ,navigate ) => (dispatch) => {
         });
         setTimeout(() => { navigate("/todoHome"); }, 3000)
     }).catch((err) => {
+        console.log('err', err.massage);
         dispatch(loginError())
         toast.error("Please check your email or password", {
             position: "top-center",

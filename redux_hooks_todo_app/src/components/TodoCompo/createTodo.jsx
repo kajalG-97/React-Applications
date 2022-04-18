@@ -15,11 +15,12 @@ import { ToastContainer, toast } from "react-toastify";
 import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { v4 as uuidv4 } from 'uuid';
 
 export const CreateTodos = () => {
 
     const dispatch = useDispatch();
-    
+
     const navigate = useNavigate();
 
     const { loding, error } = useSelector((store) => store.todo);
@@ -33,8 +34,9 @@ export const CreateTodos = () => {
         date: ""
     });
     const [txt, setTxt] = React.useState({
+
         text: "",
-        subtasksStatus:false
+        subtaskStatus: false
     })
 
     const handleChange = (e) => {
@@ -66,15 +68,10 @@ export const CreateTodos = () => {
             console.log('e', e);
             setData({ ...data, tags: { ...data.tags, Others: checked } })
         }
-       
+
     }
 
-    // const handleChangeSubtasks = (e) => {
-    //     let { checked } = e.target;
-    //      if (e.target.value === "subtaskStatus") {
-    //          setTxt({ ...data, subtasks: [...data.subtasks, txt: { ...txt,subtaskStatus:checked}]})
-    //     }
-    // }
+   
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -83,12 +80,13 @@ export const CreateTodos = () => {
     }
 
     const { title, description, status, date } = data;
-    return loding ? <img src="https://miro.medium.com/max/1400/1*CsJ05WEGfunYMLGfsT2sXA.gif" /> : error ? <img src="https://cdn.dribbble.com/users/2469324/screenshots/6538803/comp_3.gif" alt="Oops something went wrong" /> : (
-        <Box component="form" sx={{ display: 'flex', gap: "20px" }}>
+    // return loding ? <img src="https://miro.medium.com/max/1400/1*CsJ05WEGfunYMLGfsT2sXA.gif" /> : error ? <img src="https://cdn.dribbble.com/users/2469324/screenshots/6538803/comp_3.gif" alt="Oops something went wrong" /> : (
+    return (
+        <Box component="form" sx={{ mb: 4, display: 'flex', gap: "20px" }}>
             <SideBar />
             <Box sx={{ display: "flex", width: "73%", ml: 4, mt: 4, boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px" }}>
 
-                <Box sx={{ width: "35%", border: "solid red" }}>
+                <Box sx={{ width: "35%" }}>
                     <TextField
                         label="Title"
                         id="title"
@@ -152,11 +150,11 @@ export const CreateTodos = () => {
 
 
                 </Box>
-                <Box sx={{ border: 1, width: "45%" }}>
+                <Box sx={{ width: "45%" }}>
                     <TextField
                         label="Add Subtask Here"
                         id="add"
-                        onChange={(e) => setTxt({...txt,text:e.target.value,subtaskStatus:false})}
+                        onChange={(e) => setTxt({ ...txt, text: e.target.value, subtaskStatus: false, id: uuidv4() })}
                         required
                         sx={{ mt: 3, width: "70%" }}
                     />
@@ -164,8 +162,8 @@ export const CreateTodos = () => {
                         data.subtasks.push(txt);
                     }}>ADD</Button>
 
-                    {data.subtasks.map((e) => {
-                        return <Box sx={{display: 'flex',width:"90%",m:2,pl:2,boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px" }} key={e.id}>
+                    {data.subtasks.map((e, i) => {
+                        return <Box sx={{ display: 'flex', width: "90%", m: 2, pl: 2, boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px" }} key={i}>
                             <FormGroup>
                                 <FormControlLabel
                                     control={
@@ -173,7 +171,7 @@ export const CreateTodos = () => {
                                         />
                                     }
                                     id="subtaskStatus" value="subtaskStatus"
-                                    // onChange={(e) => handleChangeSubtasks(e)}
+                                    onChange={(e) => handleChangeSubtasks(e)}
                                 /></FormGroup>
                             <h2>{e.text}</h2>
                             {console.log('text', e.text)}
@@ -183,7 +181,7 @@ export const CreateTodos = () => {
                         </Box>
                     })}
                 </Box>
-                <Box sx={{ border: 1, width: "30%" }}>
+                <Box sx={{ width: "30%" }}>
                     <TextField
                         label="Date"
                         id="date"

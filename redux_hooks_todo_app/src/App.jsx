@@ -8,6 +8,7 @@ import { TodoHomePage } from './components/TodoCompo/TodoHomePage'
 import { HomeNav } from './components/HomeNav'
 import { CreateTodos } from './components/TodoCompo/createTodo'
 import { TodoSummery } from './components/TodoCompo/todoSummery'
+import { EditTodos } from './components/TodoCompo/todoEdit'
 
 function App() {
   
@@ -21,7 +22,8 @@ function App() {
         <Route path="/SignUp" element={<SignUp />} />
         <Route path="/todoHome" element={<TodoHomePage />} />
         <Route path="/createTodo" element={<CreateTodos />} />
-        <Route path="/summery" element={< TodoSummery/>} />
+        <Route path="/summery" element={< TodoSummery />} />
+        <Route path="/editTodos" element={< EditTodos />} />
      </Routes>
     </div>
   )
