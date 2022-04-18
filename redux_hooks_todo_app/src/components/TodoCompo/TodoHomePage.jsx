@@ -8,8 +8,8 @@ import { TodoItemMap } from "./TodoItemMap"
 export const TodoHomePage = () => {
     const { loding, error } = useSelector((store) => store.todo);
 
-    return loding ? <img src="https://miro.medium.com/max/1400/1*CsJ05WEGfunYMLGfsT2sXA.gif" /> : error ? <img src="https://cdn.dribbble.com/users/2469324/screenshots/6538803/comp_3.gif" alt="Oops something went wrong" /> : (
-        // return (
+    // return loding ? <img src="https://miro.medium.com/max/1400/1*CsJ05WEGfunYMLGfsT2sXA.gif" /> : error ? <img src="https://cdn.dribbble.com/users/2469324/screenshots/6538803/comp_3.gif" alt="Oops something went wrong" /> : (
+        return (
         <Box sx={{ mb: 4, display: 'flex', gap: "20px" }}>
             <SideBar />
             <TodoItemMap />
