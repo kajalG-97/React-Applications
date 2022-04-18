@@ -56,13 +56,22 @@ export const SubtasksContainer = () => {
 
             {todoList.map((e) => {
                 return <Box sx={{ borderRadius: 2, p: 2, width: "80%", m: 2, bgcolor: "#eee6ef" }} key={e.id}>
+
+
                     <h3 style={{ pl: 4, pt: 2, textAlign: "left" }}>Task</h3>
-                    <Box sx={{height:"38px",display: "flex",alignItems:"center",justifyContent: "space-around"}}>
-                        <Box sx={[{ borderRadius:1,border: "2px solid #a8b2b7", bgcolor: "#d6dde0", width: "130px" }]}>{ e.status}</Box>
-                        <h4 style={{color:"grey"}}>{ e.date}</h4>
+
+                    <Box sx={{ height: "38px", display: "flex", alignItems: "center", justifyContent: "space-around" }}>
+
+                        <Box sx={[{ borderRadius: 1, border: "2px solid #a8b2b7", bgcolor: "#d6dde0", width: "130px" }]}>{e.status}</Box>
+
+                        <h4 style={{ color: "grey" }}>{e.date}</h4>
+
                     </Box>
-                    <Box sx={{border:0,lineHeight: "0px"}}>
+
+                    <Box sx={{ border: 0, lineHeight: "0px" }}>
+
                         <h4 style={{}}>description  : {e.description}</h4></Box>
+
                     <Box sx={{ border: 0 }}>
                         {e.subtasks.map((sub) => {
                             return <Box sx={{ display: 'flex', alignItems: "center", justifyContent: "center" }}>

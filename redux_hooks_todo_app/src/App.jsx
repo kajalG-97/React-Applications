@@ -11,20 +11,20 @@ import { TodoSummery } from './components/TodoCompo/todoSummery'
 import { EditTodos } from './components/TodoCompo/todoEdit'
 
 function App() {
-  
+
   return (
     <div className="App">
       <HomeNav />
       <Routes>
-        <Route path="/" element={<Home/>}/>
+        <Route path="/" element={<Home />} />
         <Route path="*" element={<NotFound />} />
-        <Route path="/SignIn" element={<SignIn/>}/>
+        <Route path="/SignIn" element={<SignIn />} />
         <Route path="/SignUp" element={<SignUp />} />
         <Route path="/todoHome" element={<TodoHomePage />} />
         <Route path="/createTodo" element={<CreateTodos />} />
         <Route path="/summery" element={< TodoSummery />} />
         <Route path="/editTodos" element={< EditTodos />} />
-     </Routes>
+      </Routes>
     </div>
   )
 }
