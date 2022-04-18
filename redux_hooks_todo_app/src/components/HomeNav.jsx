@@ -6,8 +6,9 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { Link, useNavigate } from "react-router-dom";
 import SvgIcon from '@mui/material/SvgIcon';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { logoutUser } from '../redux/auth/authAction';
 
 function HomeIcon(props) {
     return (
@@ -28,6 +29,8 @@ const darkTheme = createTheme({
 export const HomeNav = () => {
     const navigate = useNavigate();
     const { isAuthenticated } = useSelector((store) => store.auth);
+
+    const dispatch = useDispatch();
     return !isAuthenticated ? (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
@@ -53,6 +56,7 @@ export const HomeNav = () => {
                         </Typography>
                         <Link to={"/createTodo"}><Button sx={{ m: 1, color: "#f2f2ff", textDecoration: "none" }} color="inherit">Create Todo</Button></Link>
                         <Link underline="none" to={"/summery"}><Button sx={{ m: 1, color: "#f2f2ff" }} color="inherit">Summary</Button></Link>
+                        <Link underline="none" to={"/"}><Button onClick={()=>(dispatch(logoutUser()))} sx={{ m: 1, color: "#f2f2ff" }} color="inherit">Logout</Button></Link>
 
                     </Toolbar>
                 </AppBar>
