@@ -15,9 +15,7 @@ export const TagStacks = () => {
     const dispatch = useDispatch();
 
     const { todoList } = useSelector((store) => store.todo);
-    console.log('todoList', todoList);
-
-
+    
     useEffect(() => {
         getData();
     }, []);
