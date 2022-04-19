@@ -6,8 +6,7 @@
       "subtasks": [
         {
           "text": "hii masai student",
-          "subtasksStatus": false,
-          "subtaskStatus": false
+          "subtasksStatus": false
         },
         {
           "text": "second task",
@@ -30,8 +29,7 @@
       "subtasks": [
         {
           "text": "hii masai student",
-          "subtasksStatus": false,
-          "subtaskStatus": false
+          "subtasksStatus": false
         },
         {
           "text": "sub new test",
@@ -59,8 +57,7 @@
       "subtasks": [
         {
           "text": "hii masai student",
-          "subtasksStatus": false,
-          "subtaskStatus": false
+          "subtasksStatus": false
         }
       ],
       "status": "InProgress",
