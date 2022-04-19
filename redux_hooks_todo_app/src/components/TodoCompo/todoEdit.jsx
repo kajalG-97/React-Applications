@@ -9,13 +9,14 @@ import Checkbox from '@mui/material/Checkbox';
 import FormGroup from '@mui/material/FormGroup';
 import Button from '@mui/material/Button';
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { todoListData } from "../../redux/todo/todoHomeAction";
+import { useNavigate, useParams } from "react-router-dom";
+import { getTodoData, todoError, todoListData, todoLoding, updateTodoList, updateTodoListData } from "../../redux/todo/todoHomeAction";
 import { ToastContainer, toast } from "react-toastify";
 import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { v4 as uuidv4 } from 'uuid';
+import axios from "axios";
 
 export const EditTodos = () => {
 
@@ -23,21 +24,38 @@ export const EditTodos = () => {
 
     const navigate = useNavigate();
 
-    const { loding, error } = useSelector((store) => store.todo);
+    const { id } = useParams();
 
-    const [data, setData] = React.useState({
-        title: "",
-        description: "",
-        subtasks: [],
-        status: "",
-        tags: { Official: false, Personal: false, Others: false },
-        date: ""
-    });
+    React.useEffect(() => {
+        getData();
+    }, []);
+
+    
+    const [data, setData] = React.useState({});
+    
+    // console.log('data', data);
+
+
+    const getData = () => {
+
+        axios.get(`http://localhost:8888/todos/${id}`).then(({ data }) => {
+            console.log('data', data);
+            setData(data)
+            // dispatch(getTodoData(data))
+        })
+            // .then(({data})=>console.log(data))
+            .catch((err) => dispatch(todoError()));
+
+    }
+
+
     const [txt, setTxt] = React.useState({
 
         text: "",
         subtaskStatus: false
     })
+
+
 
     const handleChange = (e) => {
         const { id, value } = e.target;
@@ -56,39 +74,41 @@ export const EditTodos = () => {
     const handleTasks = (e) => {
         let { checked } = e.target;
         if (e.target.value === "official") {
-            console.log('checked', checked);
-
             setData({ ...data, tags: { ...data.tags, Official: checked } })
         }
         if (e.target.value === "personal") {
-            console.log('e', e);
+            
             setData({ ...data, tags: { ...data.tags, Personal: checked } })
         }
         if (e.target.value === "others") {
-            console.log('e', e);
             setData({ ...data, tags: { ...data.tags, Others: checked } })
         }
 
     }
 
 
-
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(todoListData(data, toast, navigate));
-        console.log('datain', data);
+        dispatch(updateTodoListData(data,id, toast, navigate));
+       
+    }
+
+    const handleDelete = (e) => {
+        dispatch(todoLoding());
+        axios.delete(`http://localhost:8888/todos/${e.target.id}`).then(() => console.log(data));
+
     }
 
     const { title, description, status, date } = data;
     // return loding ? <img src="https://miro.medium.com/max/1400/1*CsJ05WEGfunYMLGfsT2sXA.gif" /> : error ? <img src="https://cdn.dribbble.com/users/2469324/screenshots/6538803/comp_3.gif" alt="Oops something went wrong" /> : (
-        return (
+    return (
         <Box component="form" sx={{ mb: 4, display: 'flex', gap: "20px" }}>
             <SideBar />
             <Box sx={{ display: "flex", width: "73%", ml: 4, mt: 4, boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px" }}>
 
                 <Box sx={{ width: "35%" }}>
                     <TextField
-                        label="Title"
+                        label=""
                         id="title"
                         value={title}
                         onChange={handleChange}
@@ -97,7 +117,7 @@ export const EditTodos = () => {
                     />
                     <TextField
                         id="description"
-                        label="Description"
+                        label=""
                         multiline
                         maxRows={4}
                         value={description}
@@ -162,7 +182,7 @@ export const EditTodos = () => {
                         data.subtasks.push(txt);
                     }}>ADD</Button>
 
-                    {data.subtasks.map((e, i) => {
+                    {data.subtasks && data.subtasks.map((e, i) => {
                         return <Box sx={{ display: 'flex', width: "90%", m: 2, pl: 2, boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px" }} key={i}>
                             <FormGroup>
                                 <FormControlLabel
@@ -175,7 +195,7 @@ export const EditTodos = () => {
                                 /></FormGroup>
                             <h2>{e.text}</h2>
                             {console.log('text', e.text)}
-                            <IconButton aria-label="delete" size="large">
+                            <IconButton id={e.id} onClick={(e) => handleDelete(e)} aria-label="delete" size="large">
                                 <DeleteIcon fontSize="inherit" />
                             </IconButton>
                         </Box>
@@ -183,7 +203,7 @@ export const EditTodos = () => {
                 </Box>
                 <Box sx={{ width: "30%" }}>
                     <TextField
-                        label="Date"
+                        label=""
                         id="date"
                         type="date"
                         value={date}
@@ -192,7 +212,7 @@ export const EditTodos = () => {
                         sx={{ mt: 3, width: "70%" }}
                     />
 
-                    <Button onClick={handleSubmit} sx={[{ border: "2px solid #81d4fa", bgcolor: "#b3e5fc", m: 4, ml: 3 }]}>Create a new Task</Button>
+                    <Button onClick={handleSubmit} sx={[{ border: "2px solid #81d4fa", bgcolor: "#b3e5fc", m: 4, ml: 3 }]}>Save Edited Task</Button>
                 </Box>
 
             </Box>

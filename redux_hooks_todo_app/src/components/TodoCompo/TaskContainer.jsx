@@ -15,7 +15,7 @@ export const TasksContainer = ({ tasks, bgcolor, border, title }) => {
             <Box bgcolor={bgcolor} border={border}>
                 <h3 style={{ textAlign: "center", lineHeight: "0.5" }}>{title}</h3>
             </Box>
-            <SubtasksContainer />
+            <SubtasksContainer tasks={tasks}/>
 
 
         </Box>

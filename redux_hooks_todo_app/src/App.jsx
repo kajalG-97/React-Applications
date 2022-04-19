@@ -23,7 +23,8 @@ function App() {
         <Route path="/todoHome" element={<TodoHomePage />} />
         <Route path="/createTodo" element={<CreateTodos />} />
         <Route path="/summery" element={< TodoSummery />} />
-        <Route path="/editTodos" element={< EditTodos />} />
+        <Route path="/todos/:id" element={< EditTodos />} />
+        
       </Routes>
     </div>
   )
