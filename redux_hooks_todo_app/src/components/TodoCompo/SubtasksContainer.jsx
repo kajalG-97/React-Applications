@@ -28,7 +28,7 @@ export const SubtasksContainer = ({tasks}) => {
         <Box>
 
             {tasks.map((e) => {
-                return <Box sx={{ borderRadius: 2, p: 2, width: "80%", m: 2, bgcolor: "#f7f3f7" }} key={e.id}>
+                return <Box sx={{ borderRadius: 2, p: 2, width: "80%", m: 2, bgcolor: "#eeeeee" }} key={e.id}>
 
 
                     <h3 style={{ pl: 4, pt: 2, textAlign: "left" }}>{ e.title}</h3>
@@ -49,7 +49,7 @@ export const SubtasksContainer = ({tasks}) => {
 
                     <Box sx={{ border: 0 }}>
                         {e.subtasks.map((sub) => {
-                            return <Box sx={{ display: 'flex', alignItems: "center", justifyContent: "center" }}>
+                            return <Box sx={{ display: 'flex', alignItems: "center", justifyContent: "space-around" }}>
                                 <FormGroup>
                                     <FormControlLabel
                                         control={
