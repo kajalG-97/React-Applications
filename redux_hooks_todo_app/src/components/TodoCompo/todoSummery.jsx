@@ -40,7 +40,7 @@ export const TodoSummery = () => {
                 <br />
                 <Button sx={[{ border: "2px solid #b39ddb", bgcolor: "#d1c4e9", width: "220px", m: 1, ml: 3 }]}>In Progress : {todoList.filter((item) => item.status === "InProgress").length}</Button>
                 <br />
-                <Button sx={[{ border: "2px solid #fcac35", bgcolor: "#ffcc80", width: "220px", m: 1, ml: 3 }]}>Done : {todoList.filter((item) => item.status.Done) === "length"}</Button>
+                <Button sx={[{ border: "2px solid #fcac35", bgcolor: "#ffcc80", width: "220px", m: 1, ml: 3 }]}>Done : {todoList.filter((item) => item.status.Done === "Done").length}</Button>
                 <br />
                 <br />
                 <br />
