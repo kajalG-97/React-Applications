@@ -8,13 +8,18 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import FormGroup from '@mui/material/FormGroup';
 
-export const SubtasksContainer = ({tasks}) => {
+export const SubtasksContainer = ({ tasks }) => {
 
 
     const navigate = useNavigate();
 
-    // const [subToggleStatus, setSubToggleStatus] = React.useState([])
+    const [checked, setChecked] = React.useState(false);
 
+    const handleChangeSubtasks = (event) => {
+        setChecked(event.target.checked);
+        e.preventDefault();
+        dispatch(updateTodoListData(data, event.target.id, toast, navigate));
+    };
 
     // const handleChangeSubtasks = (e) => {
     //     let { checked } = e.target;
@@ -31,7 +36,7 @@ export const SubtasksContainer = ({tasks}) => {
                 return <Box sx={{ borderRadius: 2, p: 2, width: "80%", m: 2, bgcolor: "#eeeeee" }} key={e.id}>
 
 
-                    <h3 style={{ pl: 4, pt: 2, textAlign: "left" }}>{ e.title}</h3>
+                    <h3 style={{ pl: 4, pt: 2, textAlign: "left" }}>{e.title}</h3>
 
                     <Box sx={{ height: "38px", display: "flex", alignItems: "center", justifyContent: "space-around" }}>
 
@@ -53,11 +58,11 @@ export const SubtasksContainer = ({tasks}) => {
                                 <FormGroup>
                                     <FormControlLabel
                                         control={
-                                            <Checkbox
+                                            <Checkbox checked={checked}
                                             />
                                         }
-                                        id="subtaskStatus" value="subtaskStatus"
-                                        onChange={(e) => handleChangeSubtasks(e)}
+                                        id={ sub.id} value="subtaskStatus"
+                                        onChange={handleChangeSubtasks}
                                     /></FormGroup>
                                 <h3> {sub.text}</h3>
                             </Box>

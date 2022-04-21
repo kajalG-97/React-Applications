@@ -30,9 +30,9 @@ export const EditTodos = () => {
         getData();
     }, []);
 
-    
+
     const [data, setData] = React.useState({});
-    
+
     // console.log('data', data);
 
 
@@ -41,10 +41,8 @@ export const EditTodos = () => {
         axios.get(`http://localhost:8888/todos/${id}`).then(({ data }) => {
             console.log('data', data);
             setData(data)
-            // dispatch(getTodoData(data))
-        })
-            // .then(({data})=>console.log(data))
-            .catch((err) => dispatch(todoError()));
+
+        }).catch((err) => dispatch(todoError()));
 
     }
 
@@ -77,7 +75,7 @@ export const EditTodos = () => {
             setData({ ...data, tags: { ...data.tags, Official: checked } })
         }
         if (e.target.value === "personal") {
-            
+
             setData({ ...data, tags: { ...data.tags, Personal: checked } })
         }
         if (e.target.value === "others") {
@@ -89,8 +87,8 @@ export const EditTodos = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(updateTodoListData(data,id, toast, navigate));
-       
+        dispatch(updateTodoListData(data, id, toast, navigate));
+
     }
 
     const handleDelete = (e) => {
