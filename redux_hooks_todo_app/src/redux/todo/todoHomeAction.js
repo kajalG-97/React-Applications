@@ -24,7 +24,7 @@ export const todoListData = (data, toast, navigate) => (dispatch) => {
     dispatch(todoLoding());
 
     axios.post("http://localhost:8888/todos", data).then(({ data }) => {
-        dispatch(todoList(data))
+        dispatch(getTodoList(data))
         toast.success("Todo Added!", {
             position: "top-center",
         });
@@ -47,7 +47,7 @@ export const updateTodoListData = (data, id,toast, navigate) => (dispatch) => {
     dispatch(todoLoding());
 
     axios.patch(`http://localhost:8888/todos/${id}`, data).then(({ data }) => {
-        dispatch(updateTodoList(data))
+        dispatch(getTodoList(data))
         toast.success("Todo Added!", {
             position: "top-center",
         });

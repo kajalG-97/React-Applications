@@ -1,11 +1,11 @@
 import { GET_TODO, TODO_ERROR, TODO_LIST, TODO_LODING, UPDATE_TODO } from "./todoHomeAction"
 
 const initialState = {
-    list: [],
+   
     todoList: [],
     loding: false,
     error: false,
-    updateList:[]
+
 }
 
 export const todoHomeReducer = (store = initialState, { type, payload }) => {
@@ -15,11 +15,11 @@ export const todoHomeReducer = (store = initialState, { type, payload }) => {
 
         case TODO_LODING: return { ...store, loding: true }
 
-        case TODO_ERROR: return { ...store, loading: false, error: true }
+        case TODO_ERROR: return { ...store, loding: false, error: true }
 
-        case GET_TODO: return { ...store, loading: false, error: false, todoList: payload }
+        case GET_TODO: return { ...store, loding: false, error: false, todoList: payload }
 
-        case UPDATE_TODO: return { ...store,loading: false, error: false, updateList: payload }
+        case UPDATE_TODO: return { ...store,loding: false, error: false, updateList: payload }
 
         default: return store;
     }

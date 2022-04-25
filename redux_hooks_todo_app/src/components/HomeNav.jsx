@@ -21,7 +21,7 @@ const darkTheme = createTheme({
     palette: {
         mode: "light",
         primary: {
-            main: "#3a393b",
+            main: "#181818",
         },
     },
 });
@@ -56,7 +56,7 @@ export const HomeNav = () => {
                         </Typography>
                         <Link to={"/createTodo"}><Button sx={{ m: 1, color: "#f2f2ff", textDecoration: "none" }} color="inherit">Create Todo</Button></Link>
                         <Link underline="none" to={"/summery"}><Button sx={{ m: 1, color: "#f2f2ff" }} color="inherit">Summary</Button></Link>
-                        <Link underline="none" to={"/"}><Button onClick={()=>(dispatch(logoutUser()))} sx={{ m: 1, color: "#f2f2ff" }} color="inherit">Logout</Button></Link>
+                        <Link underline="none" to={"/"}><Button onClick={() => (dispatch(logoutUser()))} sx={{ m: 1, color: "#f2f2ff" }} color="inherit">Logout</Button></Link>
 
                     </Toolbar>
                 </AppBar>

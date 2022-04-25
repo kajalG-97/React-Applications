@@ -87,8 +87,9 @@ export const CreateTodos = () => {
     }
 
     const { title, description, status, date } = data;
-    // return loding ? <img src="https://miro.medium.com/max/1400/1*CsJ05WEGfunYMLGfsT2sXA.gif" /> : error ? <img src="https://cdn.dribbble.com/users/2469324/screenshots/6538803/comp_3.gif" alt="Oops something went wrong" /> : (
-    return (
+    return loding ? <img src="https://miro.medium.com/max/1400/1*CsJ05WEGfunYMLGfsT2sXA.gif" /> : error ? <img src="https://cdn.dribbble.com/users/2469324/screenshots/6538803/comp_3.gif" alt="Oops something went wrong" /> : (
+    // return (
+        <>
         <Box component="form" sx={{ mb: 4, display: 'flex', gap: "20px" }}>
             <SideBar />
             <Box sx={{ display: "flex", width: "73%", ml: 4, mt: 4, boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px" }}>
@@ -116,8 +117,8 @@ export const CreateTodos = () => {
                         <Box >
                             <RadioGroup>
                                 <FormControlLabel onChange={handleRadio} id="Todo" value="Todo" control={<Radio color="secondary" />} label="Todo" />
-                                <FormControlLabel onChange={handleRadio} id="InProgress" value="InProgress" control={<Radio color="secondary"/>} label="InProgress" />
-                                <FormControlLabel onChange={handleRadio} id="Done" value="Done" control={<Radio color="secondary"/>} label="Done" />
+                                <FormControlLabel onChange={handleRadio} id="InProgress" value="InProgress" control={<Radio color="secondary" />} label="InProgress" />
+                                <FormControlLabel onChange={handleRadio} id="Done" value="Done" control={<Radio color="secondary" />} label="Done" />
                             </RadioGroup>
 
                         </Box>
@@ -210,5 +211,7 @@ export const CreateTodos = () => {
 
             </Box>
         </Box>
+            <ToastContainer />
+        </>
     )
 }
